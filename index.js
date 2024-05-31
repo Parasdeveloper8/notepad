@@ -10,6 +10,8 @@ app.set("view engine","ejs");
 
 app.set("views","./views");
 
+app.use(express.static(__dirname + '/public'));
+//relative mean
 const pool = createPool({
     host:"localhost",
     user:"root",
@@ -21,7 +23,7 @@ app.use(express.urlencoded({extended:false}));
 app.get("/",(req,res)=>{
     res.render("index.ejs");
 })
-const port = process.env.PORT || 3400;
+const port = process.env.PORT || 34000;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
       pool.query("insert into MYnote.Note(personalnote) value(?)",[text],(err,result,fields)=>{
@@ -36,7 +38,7 @@ app.post("/saveNote",(req,res)=>{
       })
 })
 app.listen(port,()=>{
-    console.log(`server started at ${port}`);
+    console.log(`server started at ${port} ${Date.now()}`);
 })
 app.get("/savednotesapi",(req,res)=>{
     pool.query("select * from MYnote.Note",(err,result,fields)=>{

@@ -9,11 +9,15 @@
   <meta charset="utf-8">
     </head>
     <body>
+      <h1 id="mpn">MY personal notepad</h1>
+      
         <form action="saveNote" method="post">
-  <textarea rows="5" cols="20" name="notes"></textarea>
-  <button type="submit" accesskey="b">Save</button>
+          <div id="frtxt">
+    <textarea rows="5" cols="20" name="notes" id="texar"></textarea>
+    </div>
+  <button type="submit" accesskey="b" id="btn-1">Save</button>
   </form>
-    <form action="/getyour" method="get">
+    <form action="/getyour" method="get" id="myn">
     <button type="submit">go to my note</button>
   </form>
     </body>

@@ -1,0 +1,56 @@
+body{
+    background-image: url("https://images.pexels.com/photos/351961/pexels-photo-351961.jpeg?cs=srgb&dl=pexels-lum3n-44775-351961.jpg&fm=jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+}
+#texar{
+    width:85vh;
+    height:65vh;
+    width:max(50vh,90vh);
+    height:max(30vh,65vh);
+    border:1px solid white;
+    box-shadow:0 0 2vh black;
+    border-radius:0.5rem;
+}
+#frtxt{
+    display:flex;
+    justify-content: center;
+}
+#mpn{
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    text-align:center;
+    font-size:3.5em;
+    color:rgba(162, 56, 56, 0.593);
+}
+#btn-1{
+    border:1px solid white;
+    width:20vh;
+    min-width:10vh
+    height:10vh;
+    min-height:5vh;
+    box-shadow:0 0 5vh black;
+    font-size:1em;
+    background-color:pink;
+    border-radius:0.5rem;
+}
+
+#myn button{
+    border:1px solid #ffffff;
+    width:20vh;
+    min-width:10vh
+    height:10vh;
+    min-height:5vh;
+    box-shadow:0 0 5vh black;
+    font-size:1em;
+    background-color:rgb(171,249,255);
+    border-radius:0.5rem;
+}
+#myn{
+    position:absolute;
+    top:50%;
+}
+#gdt{
+    border:3px solid green;
+}
