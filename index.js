@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 //relative mean
 const pool = createPool({
     host:"localhost",
-    user:"root",
+    user:"",
     password:"8890Aaaa@",
     database:"MYnote",
     connectionLimit:10
@@ -36,6 +36,7 @@ app.post("/saveNote",(req,res)=>{
             console.log(typeof result);
         }
       })
+      
 })
 app.listen(port,()=>{
     console.log(`server started at ${port} ${Date.now()}`);

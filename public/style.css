@@ -52,5 +52,20 @@ body{
     top:50%;
 }
 #gdt{
-    border:3px solid green;
+    border:1px solid #ffffff;
+    width:60vh;
+    min-width:20vh
+    height:30vh;
+    min-height:10vh;
+    box-shadow:0 0 5vh black;
+    font-size:1em;
+    background-color:rgb(171,249,255);
+    border-radius:0.5rem;
+    position:absolute;
+    left:40%;
+    top:50%;
+}
+#note{
+    text-align:center;
+    text-decoration: underline silver;
 }
