@@ -17,7 +17,7 @@ const pool = createPool({
     user:"root",
     password:"8890Aaaa@",
     database:"MYnote",
-    connectionLimit:10
+    connectionLimit:30
 });
 app.use(express.urlencoded({extended:false}));
 app.get("/",(req,res)=>{

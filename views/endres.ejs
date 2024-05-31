@@ -11,8 +11,10 @@
 <body>
   <div>
   <% const js=JSON.stringify(data) %>
-  <% const ab = js.replace(/\\"/g,'').replace("{",'').replace("}",'').replace("[",'') .replace("]",'').replace(":",'').replace("personalnote",'')%>
+  <% const ab = js.replace(/\\"/g,'').replace("{",'').replace("}",'').replace("[",'') .replace("]",'').replace(":",'').replace("personalnote",'') %>
+  <div id="endresdiv">
   <p><%=ab%></p>
+  </div>
   </div>
 </body>
 </html>
