@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'));
 //relative mean
 const pool = createPool({
     host:"localhost",
-    user:"",
+    user:"root",
     password:"8890Aaaa@",
     database:"MYnote",
     connectionLimit:10
