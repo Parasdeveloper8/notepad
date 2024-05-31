@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+  <% const js=JSON.stringify(data) %>
+  <% const ab = js.replace(/\\"/g,'').replace("{").replace("}").replace("[") .replace("]").replace(":")%>
+  <p><%=ab%></p>
+</body>
+</html>
