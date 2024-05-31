@@ -5,7 +5,7 @@
 </head>
 <body>
   <% const js=JSON.stringify(data) %>
-  <% const ab = js.replace(/\\"/g,'').replace("{").replace("}").replace("[") .replace("]").replace(":")%>
+  <% const ab = js.replace(/\\"/g,'').replace("{",'').replace("}",'').replace("[",'') .replace("]",'').replace(":",'').replace("personalnote",'')%>
   <p><%=ab%></p>
 </body>
 </html>
