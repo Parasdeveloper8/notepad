@@ -1,5 +1,7 @@
 const express = require("express");
 
+const bcrypt = require('bcrypt');
+
 const app = express();
 
 const ejs = require("ejs");
@@ -20,9 +22,34 @@ const pool = createPool({
     connectionLimit:30
 });
 app.use(express.urlencoded({extended:false}));
+
+const saltRounds = 10;
+
 app.get("/",(req,res)=>{
     res.render("index.ejs");
 })
+app.post("/regis",(req,res)=>{
+    const mypassword = req.body.password;
+    const username = req.body.username;
+    const id = req.body.id;
+    bcrypt.hash(mypassword,saltRounds,(err,hash)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            pool.query("insert into MYnote.users(id,username,password_hash) values(?,?,?)",[id,username,hash],(err,result,fields)=>{
+                if(err){
+                    console.error(err);
+                    res.send("failed");
+                }
+                else{
+                    console.log(result);
+                    res.send("successfull");
+                }
+            });
+        }
+    });})
+
 const port = process.env.PORT || 34000;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
@@ -54,4 +81,13 @@ app.get("/savednotesapi",(req,res)=>{
 })
 app.get("/getyour",(req,res)=>{
     res.render("savednotes");
+})
+app.get("/user",(req,res)=>{
+    res.render("userp");
+})
+app.get("/reg",(req,res)=>{
+    res.render("register");
+})
+app.get("/log",(req,res)=>{
+    res.render("login");
 })

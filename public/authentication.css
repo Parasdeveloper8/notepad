@@ -1,0 +1,20 @@
+#login >div{
+    width:60vh;
+    min-width:20vh
+    height:30vh;
+    min-height:10vh;
+    border:1px solid black;
+    position:absolute;
+    top:30%;
+    left:40%;
+}
+#register > div{
+    width:60vh;
+    min-width:20vh
+    height:30vh;
+    min-height:10vh;
+    border:1px solid black;
+    position:absolute;
+    top:40%;
+    left:40%;
+}

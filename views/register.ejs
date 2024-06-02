@@ -9,6 +9,14 @@
   <meta charset="utf-8">
     </head>
     <body>
-
+      <form action="/regis" method="post">
+  <label for="c">Create a id</label>
+  <input type="number" name="id" id="c">
+  <label for="a">Create your username</label>
+  <input type="text" name="username" id="a" required>
+  <label for="b">Create your password</label>
+  <input type="password" pattern="[a-z0-5]{8,}" required name="password">
+  <input type="submit" value="save" >
+  </form>
     </body>
   </html>
