@@ -28,11 +28,13 @@ const saltRounds = 10;
 app.get("/",(req,res)=>{
     res.render("index.ejs");
 })
+
+
 app.post("/regis",(req,res)=>{
     const mypassword = req.body.password;
     const username = req.body.username;
     const id = req.body.id;
-    bcrypt.hash(mypassword,saltRounds,(err,hash)=>{
+     bcrypt.hash(mypassword,saltRounds,(err,hash)=>{
         if(err){
             console.log(err);
         }
@@ -50,7 +52,7 @@ app.post("/regis",(req,res)=>{
         }
     });})
 
-const port = process.env.PORT || 34000;
+const port = process.env.PORT || 5500;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
       pool.query("insert into MYnote.Note(personalnote) value(?)",[text],(err,result,fields)=>{
@@ -91,3 +93,17 @@ app.get("/reg",(req,res)=>{
 app.get("/log",(req,res)=>{
     res.render("login");
 })
+app.post("/login",(req,res)=>{
+    const pass2 = req.body.password2;
+    const usern = req.body.username2;
+    pool.query("SELECT * FROM MYnote.users WHERE password_hash = ? AND username = ?",[pass2,usern],(err,result,fields)=>{
+        if(err){
+            res.send("failed");
+            console.error(err);
+        }
+        else {
+            console.log(result);
+                res.send("logged in successfully");
+        }
+    })
+});
