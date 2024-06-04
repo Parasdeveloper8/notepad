@@ -18,7 +18,7 @@ const pool = createPool({
     host:"localhost",
     user:"root",
     password:"8890Aaaa@",
-    database:"MYnote",
+    database:"mynote",
     connectionLimit:30
 });
 app.use(express.urlencoded({extended:false}));
@@ -40,7 +40,7 @@ app.post("/regis",(req,res)=>{
             console.log(err);
         }
         else{
-            pool.query("insert into MYnote.users(username,password_hash,id) values(?,?,?)",[username,hash,id],(err,result,fields)=>{
+            pool.query("insert into mynote.user(username,password_hash,id) values(?,?,?)",[username,hash,id],(err,result,fields)=>{
                 if(err){
                     console.error(err);
                     res.send("failed");
@@ -56,7 +56,7 @@ app.post("/regis",(req,res)=>{
 const port = process.env.PORT || 5500;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
-      pool.query("insert into MYnote.Note(personalnote,id) value(?,?)",[text,id],(err,result,fields)=>{
+      pool.query("insert into mynote.Note(personalnote,id) value(?,?)",[text,id],(err,result,fields)=>{
         if(err){
             res.render("error.ejs");
         }
@@ -99,7 +99,7 @@ app.post("/login",(req,res)=>{
     const password2 = req.body.password2;
     username2 = req.body.username2;
 
-    pool.query("SELECT * FROM MYnote.users WHERE username = ?", [username2], (err, result, fields) => {
+    pool.query("SELECT * FROM mynote.user WHERE username = ?", [username2], (err, result, fields) => {
         if (err) {
             console.error(err);
             return res.send("Failed to query database");

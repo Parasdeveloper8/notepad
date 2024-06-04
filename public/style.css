@@ -4,12 +4,14 @@ body{
     background-size: cover;
     width:100vw;
     height:100vh;
+    scroll-behavior: smooth;
+    /*scrollbar-color: yellow white;*/
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 #texar{
-    width:85vh;
-    height:65vw;
-    width:max(50vh,90vh);
-    height:max(30vh,65vh);
+    width:50%;
+    height:60vh;
     border:1px solid white;
     box-shadow:0 0 2vh black;
     border-radius:0.5rem;
@@ -34,6 +36,9 @@ body{
     font-size:1em;
     background-color:pink;
     border-radius:0.5rem;
+    position: fixed;
+    top:80%;
+    left:80%;
 }
 
 #myn button{
@@ -46,6 +51,8 @@ body{
     font-size:1em;
     background-color:rgb(171,249,255);
     border-radius:0.5rem;
+    position:fixed;
+    top:25%;
 }
 #myn{
     position:absolute;
@@ -79,9 +86,9 @@ body{
     height:200px;
     min-width:100pw;
     min-height:100px;
-    position: absolute;
-
-    top:56%;
+    position:fixed;
+    top:40%;
+    left:80%;
 }
 #shortc > h3{
     font-weight: 500;
