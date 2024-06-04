@@ -24,7 +24,8 @@ const pool = createPool({
 app.use(express.urlencoded({extended:false}));
 
 const saltRounds = 10;
-
+let username2;
+let id;
 app.get("/",(req,res)=>{
     res.render("index.ejs");
 })
@@ -33,13 +34,13 @@ app.get("/",(req,res)=>{
 app.post("/regis",(req,res)=>{
     const mypassword = req.body.password;
     const username = req.body.username;
-    const id = req.body.id;
+    id = req.body.sid;
      bcrypt.hash(mypassword,saltRounds,(err,hash)=>{
         if(err){
             console.log(err);
         }
         else{
-            pool.query("insert into MYnote.users(id,username,password_hash) values(?,?,?)",[id,username,hash],(err,result,fields)=>{
+            pool.query("insert into MYnote.users(username,password_hash,id) values(?,?,?)",[username,hash,id],(err,result,fields)=>{
                 if(err){
                     console.error(err);
                     res.send("failed");
@@ -55,7 +56,7 @@ app.post("/regis",(req,res)=>{
 const port = process.env.PORT || 5500;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
-      pool.query("insert into MYnote.Note(personalnote) value(?)",[text],(err,result,fields)=>{
+      pool.query("insert into MYnote.Note(personalnote,id) value(?,?)",[text,id],(err,result,fields)=>{
         if(err){
             res.render("error.ejs");
         }
@@ -93,17 +94,35 @@ app.get("/reg",(req,res)=>{
 app.get("/log",(req,res)=>{
     res.render("login");
 })
+
 app.post("/login",(req,res)=>{
-    const pass2 = req.body.password2;
-    const usern = req.body.username2;
-    pool.query("SELECT * FROM MYnote.users WHERE password_hash = ? AND username = ?",[pass2,usern],(err,result,fields)=>{
-        if(err){
-            res.send("failed");
+    const password2 = req.body.password2;
+    username2 = req.body.username2;
+
+    pool.query("SELECT * FROM MYnote.users WHERE username = ?", [username2], (err, result, fields) => {
+        if (err) {
             console.error(err);
+            return res.send("Failed to query database");
         }
-        else {
+
+        if (result.length !== 1) {
+            // User not found
+            return res.send("User not found");
             console.log(result);
-                res.send("logged in successfully");
         }
-    })
+
+        const storedHash = result[0].password_hash;
+        bcrypt.compare(password2, storedHash, (err, match) => {
+            if (err) {
+                console.error(err);
+                res.send("Failed to compare passwords");
+            }
+
+            if (match) {
+                res.render("username",{usern:username2});
+            } else {
+                res.send("Incorrect password");
+            }
+        });
+    });
 });
