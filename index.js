@@ -40,7 +40,7 @@ app.post("/regis",(req,res)=>{
             console.log(err);
         }
         else{
-            pool.query("insert into mynote.user(username,password_hash,id) values(?,?,?)",[username,hash,id],(err,result,fields)=>{
+            pool.query("insert into mynote.user(id,username,password_hash) values(?,?,?)",[id,username,hash],(err,result,fields)=>{
                 if(err){
                     console.error(err);
                     res.send("failed");
@@ -56,9 +56,12 @@ app.post("/regis",(req,res)=>{
 const port = process.env.PORT || 5500;
 app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
-      pool.query("insert into mynote.Note(personalnote,id) value(?,?)",[text,id],(err,result,fields)=>{
+      const userid= req.body.noteid;
+      const random = Math.floor(Math.random()*1000);
+      pool.query("insert into mynote.notes(id,userId,text) value(?,?,?)",[random,userid,text],(err,result,fields)=>{
         if(err){
             res.render("error.ejs");
+            console.log(err);
         }
         else{
             res.render("pass.ejs");
@@ -71,14 +74,14 @@ app.post("/saveNote",(req,res)=>{
 app.listen(port,()=>{
     console.log(`server started at ${port} ${Date.now()}`);
 })
-app.get("/savednotesapi",(req,res)=>{
-    pool.query("select * from MYnote.Note",(err,result,fields)=>{
+app.post("/savednotesapi",(req,res)=>{
+    const gid = req.body.getdatabyid;
+    pool.query("select text from MYnote.notes where userId = ?",[gid],(err,result,fields)=>{
         if(err){
            res.send(err);
         }
         else{
-           const dt= JSON.stringify(result);
-            res.render("endres",{data:dt});
+            res.render("endres",{data:result});
         }
     })
 })

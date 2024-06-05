@@ -10,8 +10,10 @@
     </head>
     <body>
         <h1 id="note">Hello your data will be in front of you after clicking this button</h1>
-        <form action="/savednotesapi" method="get">
+        <form action="/savednotesapi" method="post">
           <input type="submit" value="get data" id="gdt">
+          <label for="a">Enter your registered id</label>
+          <input type="number" name="getdatabyid" id="a">
         </form>
         
     </body>
