@@ -29,8 +29,6 @@ let id;
 app.get("/",(req,res)=>{
     res.render("index.ejs");
 })
-
-
 app.post("/regis",(req,res)=>{
     const mypassword = req.body.password;
     const username = req.body.username;
