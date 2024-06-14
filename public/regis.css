@@ -1,0 +1,30 @@
+body{
+    background-image: url("https://c1.wallpaperflare.com/preview/205/111/755/notebook-pen-table-blank.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100vw;
+    height:100vh;
+    overflow: hidden;
+}
+.main{
+    border:1px solid white;
+    background-color: white;
+    width:80vw;
+    height:60vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    position:absolute;
+    top:25vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5vw;
+}
+label{
+    color:black;
+    font-family:Courier;
+    font-weight: 900;
+}
+input[type="text"],input[type="password"]{
+    width:40vw;
+}

@@ -2,28 +2,6 @@ const express = require('express');
 
 const bcrypt = require('bcrypt');
 
-//const nodemailer = require('nodemailer');
-/*const transport = nodemailer.createTransport({
-    service:'gmail',
-    auth:{
-        user:"parasprajapat8th@gmail.com",
-        pass:'8890Aaaa@'
-    }
-});
-const mailOptions = {
-    from:'parasprajapat8th@gmail.com',
-    to:'pehooverma703@gmail.com',
-    subject:'blank',
-    text:'blank'
-}
-transport.sendMail(mailOptions,(error,info)=>{
-    if(error){
-        console.error(error);
-    }
-    else{
-        console.log("ok");
-    }
-})*/
 const app = express();
 
 const ejs = require("ejs");
