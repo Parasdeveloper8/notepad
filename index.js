@@ -1,12 +1,35 @@
-const express = require("express");
+const express = require('express');
 
 const bcrypt = require('bcrypt');
 
+//const nodemailer = require('nodemailer');
+/*const transport = nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        user:"parasprajapat8th@gmail.com",
+        pass:'8890Aaaa@'
+    }
+});
+const mailOptions = {
+    from:'parasprajapat8th@gmail.com',
+    to:'pehooverma703@gmail.com',
+    subject:'blank',
+    text:'blank'
+}
+transport.sendMail(mailOptions,(error,info)=>{
+    if(error){
+        console.error(error);
+    }
+    else{
+        console.log("ok");
+    }
+})*/
 const app = express();
 
 const ejs = require("ejs");
 
 const {createPool} = require("mysql2");
+const { error } = require("console");
 
 app.set("view engine","ejs");
 
@@ -56,7 +79,17 @@ app.post("/saveNote",(req,res)=>{
       const text = req.body.notes;
       const userid= req.body.noteid;
       const random = Math.floor(Math.random()*1000);
-      pool.query("insert into mynote.notes(id,userId,text) value(?,?,?)",[random,userid,text],(err,result,fields)=>{
+      const saveTime = new Date(); 
+      const date = saveTime.getDate(); 
+      const month = saveTime.getMonth() + 1;
+      const year = saveTime.getFullYear();
+      const hour = saveTime.getHours();
+      const minute = saveTime.getMinutes();
+      const second = saveTime.getSeconds(); 
+      const millisecond = saveTime.getMilliseconds();
+      const nd = `${year}-${month}-${date} ${hour}:${minute}:${second}.${millisecond}`; 
+
+      pool.query("insert into mynote.notes(id,userId,text,time) value(?,?,?,?)",[random,userid,text,nd],(err,result,fields)=>{
         if(err){
             res.render("error.ejs");
             console.log(err);
@@ -120,10 +153,13 @@ app.post("/login",(req,res)=>{
             }
 
             if (match) {
-                res.render("username",{usern:username2});
+                res.render("username",{usern:username2}); 
             } else {
                 res.send("Incorrect password");
             }
         });
     });
 });
+
+
+

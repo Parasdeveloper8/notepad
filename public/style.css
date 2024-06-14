@@ -10,7 +10,7 @@ body{
     overflow-y: hidden;
 }
 #texar{
-    width:50%;
+    width:40vw;
     height:60vh;
     border:1px solid white;
     box-shadow:0 0 2vh black;
