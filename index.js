@@ -56,19 +56,20 @@ app.post("/regis",(req,res)=>{
     const mypassword = req.body.password;
     const username = req.body.username;
     id = req.body.sid;
+    const unique =id + Math.floor(Math.random())*Math.random()+id ;
      bcrypt.hash(mypassword,saltRounds,(err,hash)=>{
         if(err){
             console.log(err);
         }
         else{
-            pool.query("insert into mynote.user(id,username,password_hash) values(?,?,?)",[id,username,hash],(err,result,fields)=>{
+            pool.query("insert into mynote.user(id,username,password_hash) values(?,?,?)",[unique,username,hash],(err,result,fields)=>{
                 if(err){
                     console.error(err);
                     res.send("failed");
                 }
                 else{
                     console.log(result);
-                    res.send("successfull");
+                    res.send(`successfully registered your uniqueid is ${unique}`);
                 }
             });
         }
@@ -125,41 +126,5 @@ app.get("/user",(req,res)=>{
 app.get("/reg",(req,res)=>{
     res.render("register");
 })
-app.get("/log",(req,res)=>{
-    res.render("login");
-})
-
-app.post("/login",(req,res)=>{
-    const password2 = req.body.password2;
-    username2 = req.body.username2;
-
-    pool.query("SELECT * FROM mynote.user WHERE username = ?", [username2], (err, result, fields) => {
-        if (err) {
-            console.error(err);
-            return res.send("Failed to query database");
-        }
-
-        if (result.length !== 1) {
-            // User not found
-            return res.send("User not found");
-            console.log(result);
-        }
-
-        const storedHash = result[0].password_hash;
-        bcrypt.compare(password2, storedHash, (err, match) => {
-            if (err) {
-                console.error(err);
-                res.send("Failed to compare passwords");
-            }
-
-            if (match) {
-                res.render("username",{usern:username2}); 
-            } else {
-                res.send("Incorrect password");
-            }
-        });
-    });
-});
-
 
 
