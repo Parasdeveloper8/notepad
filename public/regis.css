@@ -8,17 +8,20 @@ body{
 }
 .main{
     border:1px solid white;
-    background-color: white;
+    background-color:white;
     width:80vw;
-    height:60vh;
+    height:70vh;
     margin-left: 10vw;
-    margin-right: 10vw;
+    margin-right:10vw;
     position:absolute;
     top:25vh;
     display:flex;
     justify-content: center;
     align-items: center;
     border-radius: 5vw;
+    margin-bottom: 15vh;
+    box-shadow: 0 0 10px black;
+
 }
 label{
     color:black;
@@ -26,5 +29,30 @@ label{
     font-weight: 900;
 }
 input[type="text"],input[type="password"]{
-    width:40vw;
+    width:20vw;
+    height:2rem;
+    text-align: center;
+    display: flex;
+    font-family:sans-serif;
+    font-weight: 500;
+    font-size: medium;
+    border:none;
+    box-shadow:0 0 5px black;
+    border-radius: 5px;
+    padding-left: auto;
+    padding-right: auto;
+}
+.l{
+    text-align:center;
+}
+input[type="submit"]{
+    width:10rem;
+    height:2rem;
+    border:none;
+    background-color: blueviolet;
+    color:white;
+    font-size:medium;
+}
+input[type="submit"]:hover{
+    background-color: rgb(133, 3, 254);
 }
