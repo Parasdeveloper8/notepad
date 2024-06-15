@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-<title>MYnotepad</title>
+  <title>MYnotepad</title>
   <link rel="icon" href="" type="icon/">
   <meta name="viewport" content="width=device-width , initial-scale=1">
-  <link rel="stylesheet" href="../authentication.css" type="text/css">
   <meta name="description" content="This is my personal notepad">
   <meta charset="utf-8">
+  <style>
+    body{
+      width:100vw;
+      height:100vh;
+      overflow: hidden;
+      background-image: url("https://c1.wallpaperflare.com/preview/205/111/755/notebook-pen-table-blank.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    input[type="submit"]{
+      width:10rem;
+      height:5rem;
+      border:none;
+      border-radius: 1vh;
+      background-color: rgb(133, 3, 254);
+      color:white;
+      font-size:1.56em;
+      margin-top: 40vh;
+      margin-left:40vw;
+    }
+    @media only screen and (max-width:400px){
+      input[type="submit"]{
+        margin-left:15vw;
+      }
+    }
+  </style>
     </head>
     <body>
         <form action="/reg" method="get">
